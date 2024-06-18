@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
-
+@onready var world = get_node('/root/World')
+const SLASH = preload("res://Scenes/slash.tscn")
 @export var speed = 200.0
 @export var acceleration = 20
 @export var friction = 10
@@ -19,6 +20,13 @@ func _physics_process(delta):
 		player_sprite.flip_h = false
 
 	move_and_slide()
+
+func _input(event):
+	if event.is_action_pressed("attack"):
+		var slash = SLASH.instantiate()
+		slash.global_position = global_position
+		slash.rotate(direction.angle())
+		world.add_child(slash)
 
 
 
