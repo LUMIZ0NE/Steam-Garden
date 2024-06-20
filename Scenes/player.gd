@@ -1,5 +1,5 @@
 extends CharacterBody2D
-
+@onready var slash_cooldown = $Slash/SlashCooldown
 @onready var world = get_node('/root/World')
 const SLASH = preload("res://Scenes/slash.tscn")
 @export var speed = 200.0
@@ -34,14 +34,11 @@ func find_direction_y():
 	elif direction.y < 0:
 		offset = Vector2(0,-40)
 
-func _input(event):
-	if event.is_action_pressed("attack"):
-		var slash = SLASH.instantiate()
-		find_direction_x()
-		find_direction_y()
-		slash.global_position = global_position + offset
-		slash.rotate(direction.angle())
-		world.add_child(slash)
-
-
-
+func _on_slash_attack_used():
+	var slash = SLASH.instantiate()
+	find_direction_x()
+	find_direction_y()
+	slash.global_position = global_position + offset
+	slash.rotate(direction.angle())
+	world.add_child(slash)
+	$Slash/SlashCooldown.start()
