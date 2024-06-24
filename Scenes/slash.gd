@@ -1,24 +1,23 @@
 extends Area2D
 signal attack_used
-const PLAYER = preload("res://Scenes/player.tscn")
+@onready var slash_sprite = $SlashSprite
+const PLAYER = preload("res://Scenes/player1.tscn")
 var is_ready: bool = true
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	translate(Vector2.RIGHT.rotated(rotation))
 	hide()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	
 	if Input.is_action_just_pressed("attack") and is_ready:
-		print("yes")
+		print("attack used")
 		is_ready = false
-		show()
 		attack_used.emit()
 
 func _on_slash_cooldown_timeout():
+	print("attack ready")
 	is_ready = true
 
-func _on_animation_finished():
-	queue_free()
+func _on_slash_sprite_animation_finished():
+	slash_sprite.queue_free()
