@@ -1,5 +1,4 @@
 extends CharacterBody2D
-@onready var slash_cooldown = $Slash/SlashCooldown
 @onready var world = get_node('/root/World')
 const SLASH = preload("res://Scenes/slash.tscn")
 @export var speed = 200.0
@@ -19,7 +18,6 @@ func _physics_process(_delta):
 		player_sprite.flip_h = false
 	elif velocity.x < 0:
 		player_sprite.flip_h = true
-
 	move_and_slide()
 
 func find_direction_x():
@@ -44,4 +42,6 @@ func _on_slash_attack_used():
 	world.add_child(slash)
 	slash.show()
 	$Slash/SlashCooldown.start()
+	
+
 

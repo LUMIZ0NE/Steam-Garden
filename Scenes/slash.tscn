@@ -29,13 +29,14 @@ size = Vector2(14, 49)
 script = ExtResource("1_yl4gi")
 
 [node name="SlashSprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(5.5, -1)
 sprite_frames = SubResource("SpriteFrames_510kt")
 autoplay = "default"
 frame = 2
 frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, 0.5)
+position = Vector2(6.5, -0.5)
 shape = SubResource("RectangleShape2D_m1yem")
 
 [connection signal="animation_finished" from="SlashSprite" to="." method="_on_slash_sprite_animation_finished"]
