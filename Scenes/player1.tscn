@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://byti302hgjrbr"]
+[gd_scene load_steps=5 format=3 uid="uid://byti302hgjrbr"]
 
 [ext_resource type="Script" path="res://Scenes/player.gd" id="1_j3vj2"]
 [ext_resource type="Texture2D" uid="uid://da2xb07dri4dc" path="res://Sprites/tempSprite.png" id="2_e3yhf"]
-[ext_resource type="PackedScene" uid="uid://b0bh38rxenrit" path="res://Scenes/slash.tscn" id="3_nlmom"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v6bvw"]
 radius = 16.0
@@ -31,6 +30,3 @@ sprite_frames = SubResource("SpriteFrames_fhjkj")
 animation = &"idle"
 
 [node name="Attack" type="Node2D" parent="."]
-
-[node name="Slash" parent="Attack" instance=ExtResource("3_nlmom")]
-position = Vector2(23, 0)
