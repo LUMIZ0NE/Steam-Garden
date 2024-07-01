@@ -6,6 +6,9 @@ extends CharacterBody2D
 @onready var player_sprite = $PlayerSprite
 var direction = Vector2.ZERO
 
+func player():
+	pass
+
 func _physics_process(_delta):
 	direction = Input.get_vector("move_left", "move_right", "move_up", "move_down").normalized()
 	if direction:

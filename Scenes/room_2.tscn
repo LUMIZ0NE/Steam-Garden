@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://mo3kqnfbsuom"]
+
+[ext_resource type="Texture2D" uid="uid://4oxojoswdbc7" path="res://Tiles/placeheldtile.png" id="1_7a816"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vufpe"]
+texture = ExtResource("1_7a816")
+texture_region_size = Vector2i(30, 30)
+0:0/0 = 0
+1:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_h32g1"]
+tile_size = Vector2i(30, 30)
+sources/0 = SubResource("TileSetAtlasSource_vufpe")
+
+[node name="Room2" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_h32g1")
+format = 2
