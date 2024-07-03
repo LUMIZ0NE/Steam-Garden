@@ -1,5 +1,4 @@
 extends CharacterBody2D
-@onready var world = get_node('/root/World')
 @export var speed = 200.0
 @export var acceleration = 20
 @export var friction = 10

@@ -10,9 +10,13 @@ var player_exit_room_posx = 0
 var player_exit_room_posy = 0
 
 func finish_changescenes():
-	if transition_scene == true and current_scene == "World":
+	if transition_scene == true:
 		transition_scene = false
-		current_scene = "Room2"
-	else:
-		current_scene = "World"
+		if current_scene == "World":
+			print("enter Room2")
+			current_scene = "Room2"
+		else:
+			print("exit room2")
+			current_scene = "World"
+
 

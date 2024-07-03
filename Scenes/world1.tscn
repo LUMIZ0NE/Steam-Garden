@@ -27,13 +27,16 @@ sources/0 = SubResource("TileSetAtlasSource_63ppg")
 script = ExtResource("1_nnk0t")
 
 [node name="Player" parent="." instance=ExtResource("1_j4qle")]
-position = Vector2(415, 238)
+position = Vector2(264, 169)
 
 [node name="Room2Enter" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Room2Enter"]
 position = Vector2(600, 603)
 shape = SubResource("RectangleShape2D_u7ang")
+
+[node name="ExitBarrier" type="CollisionPolygon2D" parent="Room2Enter"]
+polygon = PackedVector2Array(533, 573, 535, 639, 662, 638, 666, 570, 736, 569, 732, 708, 458, 706, 451, 570)
 
 [node name="TileMap" type="TileMap" parent="."]
 z_index = -1

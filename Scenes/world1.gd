@@ -12,6 +12,7 @@ func _process(delta):
 
 func _on_room_2_enter_body_entered(body):
 	if body.has_method("player"):
+		
 		Global.transition_scene = true
 
 
