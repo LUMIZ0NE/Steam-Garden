@@ -9,7 +9,7 @@ var player_start_posx = 264
 var player_start_posy = 169
 
 var player_exit_room_posx = 604
-var player_exit_room_posy = 539
+var player_exit_room_posy = 607
 
 func finish_changescenes():
 	print(str(transition_scene))

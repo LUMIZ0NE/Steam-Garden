@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://bqfmn77mvaoxj"]
+
+[ext_resource type="Texture2D" uid="uid://dn655gixmxw6l" path="res://Sprites/goblin1.png" id="1_hafcw"]
+[ext_resource type="Script" path="res://Scenes/goblin.gd" id="1_uw36c"]
+[ext_resource type="Texture2D" uid="uid://7j43yu1ic6bu" path="res://Sprites/goblin2.png" id="2_3fbtt"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4arau"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_hafcw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_3fbtt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[node name="Goblin" type="CharacterBody2D"]
+script = ExtResource("1_uw36c")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_4arau")
+autoplay = "default"
+frame = 1
+frame_progress = 0.96229
