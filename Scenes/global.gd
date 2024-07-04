@@ -3,11 +3,13 @@ extends Node
 var current_scene = "World"
 var transition_scene = false
 
-var player_start_posx = 0
-var player_start_posy = 0
+var first_load = true
 
-var player_exit_room_posx = 0
-var player_exit_room_posy = 0
+var player_start_posx = 264
+var player_start_posy = 169
+
+var player_exit_room_posx = 604
+var player_exit_room_posy = 539
 
 func finish_changescenes():
 	print(str(transition_scene))

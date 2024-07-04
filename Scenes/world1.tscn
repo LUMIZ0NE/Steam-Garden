@@ -27,7 +27,7 @@ sources/0 = SubResource("TileSetAtlasSource_63ppg")
 script = ExtResource("1_nnk0t")
 
 [node name="Player" parent="." instance=ExtResource("1_j4qle")]
-position = Vector2(264, 169)
+position = Vector2(604, 539)
 
 [node name="Room2Enter" type="Area2D" parent="."]
 
