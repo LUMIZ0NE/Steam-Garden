@@ -11,6 +11,8 @@ var player_start_posy = 169
 var player_exit_room_posx = 604
 var player_exit_room_posy = 607
 
+var player_current_atk = false
+
 func finish_changescenes():
 	print(str(transition_scene))
 	transition_scene = false

@@ -1,11 +1,36 @@
-[gd_scene load_steps=5 format=3 uid="uid://bqfmn77mvaoxj"]
+[gd_scene load_steps=9 format=3 uid="uid://bqfmn77mvaoxj"]
 
 [ext_resource type="Texture2D" uid="uid://dn655gixmxw6l" path="res://Sprites/goblin1.png" id="1_hafcw"]
 [ext_resource type="Script" path="res://Scenes/goblin.gd" id="1_uw36c"]
 [ext_resource type="Texture2D" uid="uid://7j43yu1ic6bu" path="res://Sprites/goblin2.png" id="2_3fbtt"]
+[ext_resource type="Texture2D" uid="uid://bsluk4b4mcua" path="res://Sprites/golbinAtk1.png" id="2_85whp"]
+[ext_resource type="Texture2D" uid="uid://bt4papfccfenv" path="res://Sprites/golbinAtk2.png" id="3_ht4c1"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4arau"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_85whp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ht4c1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_85whp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ht4c1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_85whp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ht4c1")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 8.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("1_hafcw")
@@ -18,11 +43,28 @@ animations = [{
 "speed": 8.0
 }]
 
-[node name="Goblin" type="CharacterBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_b1jta"]
+radius = 22.0907
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nv5f3"]
+height = 24.0
+
+[node name="Goblin" type="CharacterBody2D" groups=["Goblin"]]
 script = ExtResource("1_uw36c")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_4arau")
+animation = &"attack"
 autoplay = "default"
-frame = 1
-frame_progress = 0.96229
+frame_progress = 0.0246111
+
+[node name="GoblinHitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GoblinHitbox"]
+shape = SubResource("CircleShape2D_b1jta")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_nv5f3")
+
+[connection signal="body_entered" from="GoblinHitbox" to="." method="_on_goblin_hitbox_body_entered"]
+[connection signal="body_exited" from="GoblinHitbox" to="." method="_on_goblin_hitbox_body_exited"]

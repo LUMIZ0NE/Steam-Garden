@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://byti302hgjrbr"]
+[gd_scene load_steps=7 format=3 uid="uid://byti302hgjrbr"]
 
 [ext_resource type="Script" path="res://Scenes/player.gd" id="1_j3vj2"]
-[ext_resource type="Texture2D" uid="uid://da2xb07dri4dc" path="res://Sprites/tempSprite.png" id="2_e3yhf"]
+[ext_resource type="Texture2D" uid="uid://b22sfj25nm7hu" path="res://Sprites/pIdle1.png" id="2_7uoa6"]
+[ext_resource type="Texture2D" uid="uid://bc5ljw8ipx1gk" path="res://Sprites/pIdle2.png" id="3_b8b4x"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v6bvw"]
 radius = 16.0
@@ -11,12 +12,18 @@ height = 52.0
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_e3yhf")
+"texture": ExtResource("2_7uoa6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_b8b4x")
 }],
 "loop": true,
 "name": &"idle",
-"speed": 5.0
+"speed": 2.0
 }]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_13tvh"]
+size = Vector2(48, 67)
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_j3vj2")
@@ -25,8 +32,21 @@ script = ExtResource("1_j3vj2")
 shape = SubResource("CapsuleShape2D_v6bvw")
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.05, 0.05)
 sprite_frames = SubResource("SpriteFrames_fhjkj")
 animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.473381
 
 [node name="Attack" type="Node2D" parent="."]
+
+[node name="PlayerHitbox" type="Area2D" parent="." groups=["Player"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHitbox"]
+position = Vector2(-1, -0.5)
+shape = SubResource("RectangleShape2D_13tvh")
+
+[node name="AtkCooldown" type="Timer" parent="."]
+
+[connection signal="body_entered" from="PlayerHitbox" to="." method="_on_player_hitbox_body_entered"]
+[connection signal="body_exited" from="PlayerHitbox" to="." method="_on_player_hitbox_body_exited"]
+[connection signal="timeout" from="AtkCooldown" to="." method="_on_atk_cooldown_timeout"]
