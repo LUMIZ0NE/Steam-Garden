@@ -56,7 +56,8 @@ script = ExtResource("1_uw36c")
 sprite_frames = SubResource("SpriteFrames_4arau")
 animation = &"attack"
 autoplay = "default"
-frame_progress = 0.0246111
+frame = 3
+frame_progress = 0.460636
 
 [node name="GoblinHitbox" type="Area2D" parent="."]
 

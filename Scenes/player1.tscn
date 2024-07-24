@@ -1,8 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://byti302hgjrbr"]
+[gd_scene load_steps=12 format=3 uid="uid://byti302hgjrbr"]
 
 [ext_resource type="Script" path="res://Scenes/player.gd" id="1_j3vj2"]
 [ext_resource type="Texture2D" uid="uid://b22sfj25nm7hu" path="res://Sprites/pIdle1.png" id="2_7uoa6"]
+[ext_resource type="Texture2D" uid="uid://hq48q5v875vk" path="res://Sprites/greenidle.png" id="2_qwfgg"]
 [ext_resource type="Texture2D" uid="uid://bc5ljw8ipx1gk" path="res://Sprites/pIdle2.png" id="3_b8b4x"]
+[ext_resource type="Texture2D" uid="uid://c80i3kmq7rl4d" path="res://Sprites/pRun1.png" id="4_t7v4d"]
+[ext_resource type="Texture2D" uid="uid://4dbq7wjup6rh" path="res://Sprites/pRun2.png" id="5_tlm3c"]
+[ext_resource type="Texture2D" uid="uid://bdkemky7bf3tk" path="res://Sprites/pRun3.png" id="6_q3bxx"]
+[ext_resource type="Texture2D" uid="uid://dnch4wye5pjaf" path="res://Sprites/pRun4.png" id="7_p2jyr"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v6bvw"]
 radius = 16.0
@@ -10,6 +15,14 @@ height = 52.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fhjkj"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_qwfgg")
+}],
+"loop": true,
+"name": &"green",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_7uoa6")
@@ -20,6 +33,23 @@ animations = [{
 "loop": true,
 "name": &"idle",
 "speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_t7v4d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_tlm3c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_q3bxx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_p2jyr")
+}],
+"loop": true,
+"name": &"siderun",
+"speed": 10.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_13tvh"]
@@ -33,9 +63,8 @@ shape = SubResource("CapsuleShape2D_v6bvw")
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_fhjkj")
-animation = &"idle"
+animation = &"siderun"
 autoplay = "idle"
-frame_progress = 0.473381
 
 [node name="Attack" type="Node2D" parent="."]
 

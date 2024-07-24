@@ -4,7 +4,7 @@ extends CharacterBody2D
 @export var friction = 10
 @onready var player_sprite = $PlayerSprite
 var direction = Vector2.ZERO
-
+var current_direction = "none"
 var enemy_inrange = false
 var enemy_atk_cooldown = true
 var health = 100
@@ -31,11 +31,23 @@ func player_movement(delta):
 	else: 
 		velocity = velocity.move_toward(Vector2.ZERO, friction)
 	if velocity.x > 0:
-		player_sprite.flip_h = false
+		current_direction = "Left"
+		play_anim(1)
 	elif velocity.x < 0:
-		player_sprite.flip_h = true
+		current_direction = "Right"
+		play_anim(1)
+	else:
+		play_anim(0)
+	if velocity.y > 0:
+		current_direction = "Down"
+		play_anim(1)
+	elif velocity.y < 0:
+		current_direction = "Up"
+		play_anim(1)
+	
+	
 	move_and_slide()
-
+	
 func _on_player_hitbox_body_entered(body):
 	if body.has_method("goblin"):
 		enemy_inrange = true
@@ -51,7 +63,26 @@ func enemy_attack():
 		enemy_atk_cooldown = false
 		$AtkCooldown.start()
 		print(health)
-
+		
 
 func _on_atk_cooldown_timeout():
 	enemy_atk_cooldown = true
+
+func play_anim(moving):
+	var dir = current_direction
+	var anim = $PlayerSprite
+	if moving == 1:
+		if dir == "Right":
+			player_sprite.flip_h = true
+			anim.play("siderun")
+		elif dir == "Left":
+			player_sprite.flip_h = false
+			anim.play("siderun")
+		if dir == "Up":
+			player_sprite.flip_h = false
+			anim.play("green")
+		elif dir == "Down":
+			player_sprite.flip_h = false
+			anim.play("green")
+	elif moving == 0:
+		anim.play("idle")
