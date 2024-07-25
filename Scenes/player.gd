@@ -10,6 +10,8 @@ var enemy_atk_cooldown = true
 var health = 100
 var player_alive = true
 
+signal goblin_stab
+signal goblin_stop
 var attack_ip = false
 
 func player():
@@ -18,6 +20,7 @@ func player():
 func _physics_process(_delta):
 	player_movement(_delta)
 	enemy_attack()
+	attack()
 	
 	if health <= 0:
 		player_alive = false
@@ -45,7 +48,6 @@ func player_movement(delta):
 		current_direction = "Up"
 		play_anim(1)
 	
-	
 	move_and_slide()
 	
 func _on_player_hitbox_body_entered(body):
@@ -63,10 +65,12 @@ func enemy_attack():
 		enemy_atk_cooldown = false
 		$AtkCooldown.start()
 		print(health)
+		goblin_stab.emit()
 		
 
 func _on_atk_cooldown_timeout():
 	enemy_atk_cooldown = true
+	goblin_stop.emit()
 
 func play_anim(moving):
 	var dir = current_direction
@@ -74,15 +78,45 @@ func play_anim(moving):
 	if moving == 1:
 		if dir == "Right":
 			player_sprite.flip_h = true
-			anim.play("siderun")
+			if attack_ip == false:
+				anim.play("siderun")
 		elif dir == "Left":
 			player_sprite.flip_h = false
-			anim.play("siderun")
+			if attack_ip == false:
+				anim.play("siderun")
 		if dir == "Up":
-			player_sprite.flip_h = false
-			anim.play("green")
+			if attack_ip == false:
+				anim.play("green")
 		elif dir == "Down":
-			player_sprite.flip_h = false
-			anim.play("green")
+			if attack_ip == false:
+				anim.play("green")
 	elif moving == 0:
-		anim.play("idle")
+		if attack_ip == false:
+			anim.play("idle")
+
+func attack():
+	var dir2 = current_direction
+	if Input.is_action_just_pressed("attack"):
+		print("attacked")
+		Global.player_current_atk = true
+		attack_ip = true
+		if dir2 == "Right":
+			$PlayerSprite.flip_h = true
+			$PlayerSprite.play("blue")
+			$PlayerCooldown.start()
+		elif dir2 == "Left":
+			$PlayerSprite.flip_h = false
+			$PlayerSprite.play("blue")
+			$PlayerCooldown.start()
+		if dir2 == "Up":
+			$PlayerSprite.play("orange")
+			$PlayerCooldown.start()
+		elif dir2 == "Down":
+			$PlayerSprite.play("orange")
+			$PlayerCooldown.start()
+
+
+func _on_player_cooldown_timeout():
+	$PlayerCooldown.stop()
+	Global.player_current_atk = false
+	attack_ip = false

@@ -98,5 +98,13 @@ shape = SubResource("RectangleShape2D_w58t3")
 [node name="Goblin" parent="." instance=ExtResource("4_fa1de")]
 position = Vector2(266, 450)
 
+[node name="Goblin2" parent="." instance=ExtResource("4_fa1de")]
+position = Vector2(840, 447)
+
+[node name="Goblin3" parent="." instance=ExtResource("4_fa1de")]
+position = Vector2(565, 453)
+
+[connection signal="goblin_stab" from="Player" to="Goblin" method="_on_player_goblin_stab"]
+[connection signal="goblin_stop" from="Player" to="Goblin" method="_on_player_goblin_stop"]
 [connection signal="body_entered" from="Room2Exit" to="." method="_on_room_2_exit_body_entered"]
 [connection signal="body_exited" from="Room2Exit" to="." method="_on_room_2_exit_body_exited"]

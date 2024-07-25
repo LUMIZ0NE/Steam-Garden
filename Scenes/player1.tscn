@@ -1,11 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://byti302hgjrbr"]
+[gd_scene load_steps=14 format=3 uid="uid://byti302hgjrbr"]
 
 [ext_resource type="Script" path="res://Scenes/player.gd" id="1_j3vj2"]
+[ext_resource type="Texture2D" uid="uid://clfcaev7hg8b1" path="res://Sprites/blue.png" id="2_3kllc"]
 [ext_resource type="Texture2D" uid="uid://b22sfj25nm7hu" path="res://Sprites/pIdle1.png" id="2_7uoa6"]
 [ext_resource type="Texture2D" uid="uid://hq48q5v875vk" path="res://Sprites/greenidle.png" id="2_qwfgg"]
 [ext_resource type="Texture2D" uid="uid://bc5ljw8ipx1gk" path="res://Sprites/pIdle2.png" id="3_b8b4x"]
 [ext_resource type="Texture2D" uid="uid://c80i3kmq7rl4d" path="res://Sprites/pRun1.png" id="4_t7v4d"]
 [ext_resource type="Texture2D" uid="uid://4dbq7wjup6rh" path="res://Sprites/pRun2.png" id="5_tlm3c"]
+[ext_resource type="Texture2D" uid="uid://bwe0us4ay767r" path="res://Sprites/orange.png" id="6_la83y"]
 [ext_resource type="Texture2D" uid="uid://bdkemky7bf3tk" path="res://Sprites/pRun3.png" id="6_q3bxx"]
 [ext_resource type="Texture2D" uid="uid://dnch4wye5pjaf" path="res://Sprites/pRun4.png" id="7_p2jyr"]
 
@@ -15,6 +17,14 @@ height = 52.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fhjkj"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_3kllc")
+}],
+"loop": true,
+"name": &"blue",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_qwfgg")
@@ -36,6 +46,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("6_la83y")
+}],
+"loop": true,
+"name": &"orange",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("4_t7v4d")
 }, {
 "duration": 1.0,
@@ -53,7 +71,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_13tvh"]
-size = Vector2(48, 67)
+size = Vector2(66, 78)
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_j3vj2")
@@ -63,7 +81,7 @@ shape = SubResource("CapsuleShape2D_v6bvw")
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_fhjkj")
-animation = &"siderun"
+animation = &"blue"
 autoplay = "idle"
 
 [node name="Attack" type="Node2D" parent="."]
@@ -71,11 +89,14 @@ autoplay = "idle"
 [node name="PlayerHitbox" type="Area2D" parent="." groups=["Player"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHitbox"]
-position = Vector2(-1, -0.5)
 shape = SubResource("RectangleShape2D_13tvh")
 
 [node name="AtkCooldown" type="Timer" parent="."]
+wait_time = 1.509
+
+[node name="PlayerCooldown" type="Timer" parent="."]
 
 [connection signal="body_entered" from="PlayerHitbox" to="." method="_on_player_hitbox_body_entered"]
 [connection signal="body_exited" from="PlayerHitbox" to="." method="_on_player_hitbox_body_exited"]
 [connection signal="timeout" from="AtkCooldown" to="." method="_on_atk_cooldown_timeout"]
+[connection signal="timeout" from="PlayerCooldown" to="." method="_on_player_cooldown_timeout"]
