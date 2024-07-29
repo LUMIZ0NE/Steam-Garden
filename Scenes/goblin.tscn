@@ -1,10 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://bqfmn77mvaoxj"]
+[gd_scene load_steps=14 format=3 uid="uid://bqfmn77mvaoxj"]
 
 [ext_resource type="Texture2D" uid="uid://dn655gixmxw6l" path="res://Sprites/goblin1.png" id="1_hafcw"]
 [ext_resource type="Script" path="res://Scenes/goblin.gd" id="1_uw36c"]
 [ext_resource type="Texture2D" uid="uid://7j43yu1ic6bu" path="res://Sprites/goblin2.png" id="2_3fbtt"]
 [ext_resource type="Texture2D" uid="uid://bsluk4b4mcua" path="res://Sprites/golbinAtk1.png" id="2_85whp"]
 [ext_resource type="Texture2D" uid="uid://bt4papfccfenv" path="res://Sprites/golbinAtk2.png" id="3_ht4c1"]
+[ext_resource type="Texture2D" uid="uid://cayd5g7fiklwd" path="res://Sprites/gobdie1.png" id="6_6y2jy"]
+[ext_resource type="Texture2D" uid="uid://bu5wtboq0f8lb" path="res://Sprites/gobdie5.png" id="7_2qaec"]
+[ext_resource type="Texture2D" uid="uid://cv4pd6sv7v4tm" path="res://Sprites/gobdie2.png" id="8_7c8e1"]
+[ext_resource type="Texture2D" uid="uid://cbpm4mg5mfgui" path="res://Sprites/gobdie3.png" id="9_bq32v"]
+[ext_resource type="Texture2D" uid="uid://1f2strlxvbfg" path="res://Sprites/gobdie4.png" id="10_et0dl"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4arau"]
 animations = [{
@@ -41,6 +46,35 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_6y2jy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_2qaec")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_7c8e1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_2qaec")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_7c8e1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_7c8e1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_bq32v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_et0dl")
+}],
+"loop": true,
+"name": &"die",
+"speed": 7.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b1jta"]
@@ -54,10 +88,10 @@ script = ExtResource("1_uw36c")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_4arau")
-animation = &"attack"
+animation = &"die"
 autoplay = "default"
-frame = 3
-frame_progress = 0.460636
+frame = 6
+frame_progress = 0.178225
 
 [node name="GoblinHitbox" type="Area2D" parent="."]
 
@@ -70,7 +104,10 @@ shape = SubResource("CapsuleShape2D_nv5f3")
 [node name="GoblinOuch" type="Timer" parent="."]
 wait_time = 0.663
 
+[node name="GoblinDies" type="Timer" parent="."]
+
 [connection signal="animation_finished" from="Sprite" to="." method="_on_sprite_animation_finished"]
 [connection signal="body_entered" from="GoblinHitbox" to="." method="_on_goblin_hitbox_body_entered"]
 [connection signal="body_exited" from="GoblinHitbox" to="." method="_on_goblin_hitbox_body_exited"]
 [connection signal="timeout" from="GoblinOuch" to="." method="_on_goblin_ouch_timeout"]
+[connection signal="timeout" from="GoblinDies" to="." method="_on_goblin_dies_timeout"]

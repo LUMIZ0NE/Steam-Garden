@@ -1,0 +1,77 @@
+[gd_scene load_steps=9 format=3 uid="uid://dnv73fao58yhu"]
+
+[ext_resource type="Texture2D" uid="uid://d0o6qmlgk10g8" path="res://Sprites/gobgate1.png" id="1_dwjua"]
+[ext_resource type="Script" path="res://Scenes/goblin_gate.gd" id="1_kj1rl"]
+[ext_resource type="Texture2D" uid="uid://dhq2dgvbrgebf" path="res://Sprites/gobgate2.png" id="2_aveno"]
+[ext_resource type="Texture2D" uid="uid://b71nle8hy3wti" path="res://Sprites/gobgate3.png" id="3_u35lp"]
+[ext_resource type="Texture2D" uid="uid://c1lk1qqt54lug" path="res://Sprites/gobgate4.png" id="4_v7pwt"]
+[ext_resource type="Texture2D" uid="uid://fh2k1mi0gswa" path="res://Sprites/gobgate5.png" id="5_w51la"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_afrfy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_dwjua")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_aveno")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_u35lp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_v7pwt")
+}],
+"loop": false,
+"name": &"close",
+"speed": 9.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_v7pwt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_w51la")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_v7pwt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_v7pwt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_v7pwt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_v7pwt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_v7pwt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_v7pwt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_v7pwt")
+}],
+"loop": true,
+"name": &"closed",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fef6m"]
+size = Vector2(120, 44)
+
+[node name="GoblinGate" type="Area2D"]
+script = ExtResource("1_kj1rl")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_afrfy")
+animation = &"close"
+autoplay = "close"
+frame = 3
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 8)
+shape = SubResource("RectangleShape2D_fef6m")

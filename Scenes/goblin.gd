@@ -7,6 +7,7 @@ const speed = 140
 var health = 80
 var player_inrange = false
 var can_hurt = true
+var goblin_alive = true
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -14,8 +15,9 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	goblin_move()
-	damages()
+	if goblin_alive == true:
+		goblin_move()
+		damages()
 
 func goblin_move():
 	var direction_to_player = global_position.direction_to(player.global_position)
@@ -44,17 +46,25 @@ func damages():
 		$GoblinOuch.start()
 		can_hurt = false
 		if health <= 0:
-			self.queue_free()
+			$Sprite.play("die")
+			goblin_alive = false
+			$GoblinDies.start()
 
 
 func _on_player_goblin_stab():
-	$Sprite.play("attack")
+	if goblin_alive == true:
+		$Sprite.play("attack")
 
 
 
 func _on_player_goblin_stop():
-	$Sprite.play("default")
+	if goblin_alive == true:
+		$Sprite.play("default")
 
 
 func _on_goblin_ouch_timeout():
 	can_hurt = true
+
+
+func _on_goblin_dies_timeout():
+	self.queue_free()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://mo3kqnfbsuom"]
+[gd_scene load_steps=14 format=3 uid="uid://mo3kqnfbsuom"]
 
 [ext_resource type="Texture2D" uid="uid://4oxojoswdbc7" path="res://Tiles/placeheldtile.png" id="1_7a816"]
 [ext_resource type="Script" path="res://Scenes/room_2.gd" id="1_dqfir"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bcfjyjwyhfo5h" path="res://Tiles/roomso.png" id="3_vydml"]
 [ext_resource type="Texture2D" uid="uid://b0ak2hcfio7py" path="res://Tiles/rooms2.png" id="4_406oa"]
 [ext_resource type="PackedScene" uid="uid://bqfmn77mvaoxj" path="res://Scenes/goblin.tscn" id="4_fa1de"]
+[ext_resource type="PackedScene" uid="uid://dnv73fao58yhu" path="res://Scenes/goblin_gate.tscn" id="7_u1m7o"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vufpe"]
 texture = ExtResource("1_7a816")
@@ -74,6 +75,9 @@ sources/2 = SubResource("TileSetAtlasSource_5ungu")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w58t3"]
 size = Vector2(132, 54)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4bmt6"]
+size = Vector2(214, 34)
+
 [node name="Room2" type="Node2D"]
 script = ExtResource("1_dqfir")
 
@@ -98,13 +102,18 @@ shape = SubResource("RectangleShape2D_w58t3")
 [node name="Goblin" parent="." instance=ExtResource("4_fa1de")]
 position = Vector2(266, 450)
 
-[node name="Goblin2" parent="." instance=ExtResource("4_fa1de")]
-position = Vector2(840, 447)
+[node name="GateCheck" type="Area2D" parent="."]
 
-[node name="Goblin3" parent="." instance=ExtResource("4_fa1de")]
-position = Vector2(565, 453)
+[node name="GateZone" type="CollisionShape2D" parent="GateCheck"]
+position = Vector2(600, 156)
+shape = SubResource("RectangleShape2D_4bmt6")
 
+[node name="GoblinGate" parent="." instance=ExtResource("7_u1m7o")]
+position = Vector2(600, 90)
+
+[connection signal="gate_close" from="." to="GoblinGate" method="_on_room_2_gate_close"]
 [connection signal="goblin_stab" from="Player" to="Goblin" method="_on_player_goblin_stab"]
 [connection signal="goblin_stop" from="Player" to="Goblin" method="_on_player_goblin_stop"]
 [connection signal="body_entered" from="Room2Exit" to="." method="_on_room_2_exit_body_entered"]
 [connection signal="body_exited" from="Room2Exit" to="." method="_on_room_2_exit_body_exited"]
+[connection signal="body_entered" from="GateCheck" to="." method="_on_gate_check_body_entered"]
