@@ -41,14 +41,16 @@ func _on_goblin_hitbox_body_exited(body):
 
 func damages():
 	if player_inrange and Global.player_current_atk and can_hurt == true:
-		health = health - 20
+		health = health - 10
 		print("goblin took damag")
-		$GoblinOuch.start()
 		can_hurt = false
+		$GoblinOuch.start()
 		if health <= 0:
 			$Sprite.play("die")
 			goblin_alive = false
 			$GoblinDies.start()
+	elif can_hurt == false:
+		print("goblin cant be hit rn sorry bub")
 
 
 func _on_player_goblin_stab():
