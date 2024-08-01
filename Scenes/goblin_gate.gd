@@ -14,3 +14,8 @@ func _on_room_2_gate_close():
 	$AnimatedSprite2D.play("close")
 
 
+
+
+func _on_room_2_gate_open():
+	Global.room2_complete = true
+	self.queue_free()

@@ -120,8 +120,10 @@ position = Vector2(300, 480)
 position = Vector2(330, 480)
 
 [connection signal="gate_close" from="." to="GoblinGate" method="_on_room_2_gate_close"]
+[connection signal="gate_open" from="." to="GoblinGate" method="_on_room_2_gate_open"]
 [connection signal="goblin_stab" from="Player" to="Goblin" method="_on_player_goblin_stab"]
 [connection signal="goblin_stop" from="Player" to="Goblin" method="_on_player_goblin_stop"]
 [connection signal="body_entered" from="Room2Exit" to="." method="_on_room_2_exit_body_entered"]
 [connection signal="body_exited" from="Room2Exit" to="." method="_on_room_2_exit_body_exited"]
+[connection signal="goblin_killed" from="Goblin" to="." method="_on_goblin_goblin_killed"]
 [connection signal="body_entered" from="GateCheck" to="." method="_on_gate_check_body_entered"]

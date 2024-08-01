@@ -7,10 +7,15 @@ var goblins_killed = 0
 var goblin_wave = 0
 
 func _ready():
+	if Global.room2_complete == true:
+		$Goblin.queue_free()
+		$GateCheck.queue_free()
+		$GoblinGate.queue_free()
 	goblin_gate.hide()
 
 func _process(_delta):
 	change_scene()
+	gate_requirements_met()
 
 func _on_room_2_exit_body_entered(body):
 	if body.has_method("player"):
@@ -39,3 +44,11 @@ func _on_gate_check_body_entered(body):
 func spawn_goblin():
 	var spawnpoint = $SpawnPoints/Point1
 	$Goblin.global_position = spawnpoint.global_position
+	
+func gate_requirements_met():
+	if goblins_killed >= 1:
+		gate_open.emit()
+
+
+func _on_goblin_goblin_killed():
+	goblins_killed = goblins_killed + 1

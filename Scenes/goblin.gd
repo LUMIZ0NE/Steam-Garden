@@ -1,4 +1,5 @@
 extends CharacterBody2D
+signal goblin_killed
 
 const speed = 140
 @onready var sprite = $Sprite
@@ -8,6 +9,7 @@ var health = 80
 var player_inrange = false
 var can_hurt = true
 var goblin_alive = true
+var goblin_attacking = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -16,7 +18,8 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	if goblin_alive == true:
-		goblin_move()
+		if goblin_attacking == false:
+			goblin_move()
 		damages()
 
 func goblin_move():
@@ -55,12 +58,14 @@ func damages():
 
 func _on_player_goblin_stab():
 	if goblin_alive == true:
+		goblin_attacking = true
 		$Sprite.play("attack")
 
 
 
 func _on_player_goblin_stop():
 	if goblin_alive == true:
+		goblin_attacking = false
 		$Sprite.play("default")
 
 
@@ -69,4 +74,5 @@ func _on_goblin_ouch_timeout():
 
 
 func _on_goblin_dies_timeout():
+	goblin_killed.emit()
 	self.queue_free()
