@@ -1,6 +1,10 @@
 extends Node2D
 @onready var goblin_gate = $GoblinGate
 signal gate_close
+signal gate_open
+const goblin = preload("res://scenes/goblin.tscn")
+var goblins_killed = 0
+var goblin_wave = 0
 
 func _ready():
 	goblin_gate.hide()
@@ -29,4 +33,9 @@ func _on_gate_check_body_entered(body):
 	if body.has_method("player"):
 		goblin_gate.show()
 		gate_close.emit()
+		spawn_goblin()
 		$GateCheck.queue_free()
+
+func spawn_goblin():
+	var spawnpoint = $SpawnPoints/Point1
+	$Goblin.global_position = spawnpoint.global_position
