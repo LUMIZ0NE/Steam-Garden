@@ -71,7 +71,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_13tvh"]
-size = Vector2(66, 78)
+size = Vector2(58, 72)
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_j3vj2")
@@ -90,6 +90,7 @@ autoplay = "idle"
 [node name="PlayerHitbox" type="Area2D" parent="." groups=["Player"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHitbox"]
+position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_13tvh")
 
 [node name="AtkCooldown" type="Timer" parent="."]

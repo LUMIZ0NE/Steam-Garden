@@ -2,6 +2,7 @@ extends Node
 
 var current_scene = "World"
 var transition_scene = false
+var go_room1 = false
 
 var first_load = true
 
@@ -17,11 +18,15 @@ var room2_complete = false
 func finish_changescenes():
 	print(str(transition_scene))
 	transition_scene = false
-	if current_scene == "World":
+	if current_scene == "World" or "Room3":
 		print("enter Room2")
 		current_scene = "Room2"
-	else:
+	elif current_scene == "Room2":
 		print("exit room2")
-		current_scene = "World"
+		if go_room1 == true:
+			current_scene = "World"
+		else:
+			current_scene = "Room3"
+		
 
 
