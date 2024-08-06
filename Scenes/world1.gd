@@ -2,6 +2,7 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	Global.current_scene = "World"
 	if Global.first_load == true:
 		$Player.position.x = Global.player_start_posx
 		$Player.position.y = Global.player_start_posy
