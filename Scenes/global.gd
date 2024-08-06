@@ -3,6 +3,7 @@ extends Node
 var current_scene = "World"
 var transition_scene = false
 var go_room1 = false
+var leaving_room3 = false
 
 var first_load = true
 
@@ -11,6 +12,9 @@ var player_start_posy = 169
 
 var player_exit_room_posx = 604
 var player_exit_room_posy = 607
+
+var player_enter_room_posx = 300
+var player_enter_room_posy = 652
 
 var player_current_atk = false
 var room2_complete = false

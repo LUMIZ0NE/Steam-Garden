@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://dyl2mollrtm75"]
+[gd_scene load_steps=10 format=3 uid="uid://dyl2mollrtm75"]
 
 [ext_resource type="Script" path="res://Scenes/room_3.gd" id="1_aeehn"]
 [ext_resource type="PackedScene" uid="uid://byti302hgjrbr" path="res://Scenes/player1.tscn" id="1_qrwie"]
 [ext_resource type="Texture2D" uid="uid://b0ak2hcfio7py" path="res://Tiles/rooms2.png" id="1_wkkl4"]
 [ext_resource type="Texture2D" uid="uid://bcfjyjwyhfo5h" path="res://Tiles/roomso.png" id="2_3edg7"]
+[ext_resource type="PackedScene" uid="uid://ccskwrlxsrllk" path="res://Scenes/goblin_gem.tscn" id="5_ysf5s"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_huqne"]
 texture = ExtResource("1_wkkl4")
@@ -76,5 +77,8 @@ layer_1/tile_data = PackedInt32Array(0, 131077, 1, 65536, 131077, 1, 131072, 131
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Room3Exit"]
 position = Vector2(302, -43)
 shape = SubResource("RectangleShape2D_i6kjg")
+
+[node name="GoblinGem" parent="." instance=ExtResource("5_ysf5s")]
+position = Vector2(509, 389)
 
 [connection signal="body_entered" from="Room3Exit" to="." method="_on_room_3_exit_body_entered"]

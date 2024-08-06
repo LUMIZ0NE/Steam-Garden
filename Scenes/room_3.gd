@@ -21,4 +21,5 @@ func _on_room_3_exit_body_entered(body):
 	if body.has_method("player"):
 		Global.current_scene = "Room3"
 		Global.go_room1 = false
+		Global.leaving_room3 = true
 		Global.transition_scene = true

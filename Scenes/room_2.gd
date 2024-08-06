@@ -7,6 +7,13 @@ var goblins_killed = 0
 var goblin_wave = 0
 
 func _ready():
+	if Global.leaving_room3 == true:
+		$Player.position.x = Global.player_enter_room_posx
+		$Player.position.y = Global.player_enter_room_posy
+		Global.leaving_room3 = false
+	else:
+		$Player.position.x = 600
+		$Player.position.y = 9
 	if Global.room2_complete == true:
 		$Goblin.queue_free()
 		$GateCheck.queue_free()
