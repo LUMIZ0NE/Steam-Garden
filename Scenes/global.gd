@@ -19,6 +19,8 @@ var player_enter_room_posy = 652
 var player_current_atk = false
 var room2_complete = false
 
+var win_check = false
+
 func finish_changescenes():
 	print(str(transition_scene))
 	transition_scene = false

@@ -7,7 +7,7 @@ var direction = Vector2.ZERO
 var current_direction = "none"
 var enemy_inrange = false
 var enemy_atk_cooldown = true
-var health = 100
+var health = 200
 var player_alive = true
 
 signal goblin_stab
@@ -26,6 +26,7 @@ func _physics_process(_delta):
 		player_alive = false
 		health = 0
 		print("you should be dead")
+		get_tree().change_scene_to_file("res://Scenes/end_screen.tscn")
 
 func player_movement(delta):
 	direction = Input.get_vector("move_left", "move_right", "move_up", "move_down").normalized()
