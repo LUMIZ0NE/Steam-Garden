@@ -102,7 +102,6 @@ shape = SubResource("CircleShape2D_b1jta")
 shape = SubResource("CapsuleShape2D_nv5f3")
 
 [node name="GoblinOuch" type="Timer" parent="."]
-wait_time = 0.663
 
 [node name="GoblinDies" type="Timer" parent="."]
 

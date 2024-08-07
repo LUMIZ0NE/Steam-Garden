@@ -44,7 +44,7 @@ func _on_goblin_hitbox_body_exited(body):
 
 func damages():
 	if player_inrange and Global.player_current_atk and can_hurt == true:
-		health = health - 10
+		health = health - 20
 		print("goblin took damag")
 		can_hurt = false
 		$GoblinOuch.start()
