@@ -4,7 +4,7 @@ signal gate_close
 signal gate_open
 const goblin = preload("res://scenes/goblin.tscn")
 var goblins_killed = 0
-var goblin_wave = 0
+var goblin_wave = 1
 
 func _ready():
 	if Global.leaving_room3 == true:
@@ -18,11 +18,13 @@ func _ready():
 		$Goblin.queue_free()
 		$GateCheck.queue_free()
 		$GoblinGate.queue_free()
+		$Wave2.queue_free()
 	goblin_gate.hide()
 
 func _process(_delta):
 	change_scene()
 	gate_requirements_met()
+	track_stats()
 
 func _on_room_2_exit_body_entered(body):
 	if body.has_method("player"):
@@ -57,12 +59,20 @@ func spawn_goblin():
 	$Goblin.global_position = spawnpoint.global_position
 	
 func gate_requirements_met():
-	if goblins_killed >= 1:
+	if goblins_killed >= 3:
 		gate_open.emit()
 
 
 func _on_goblin_goblin_killed():
 	goblins_killed = goblins_killed + 1
+	if goblins_killed == 1:
+		wave_load()
+	
+
+func wave_load():
+	goblin_wave = 2
+	$Wave2/Goblin.global_position = $SpawnPoints/Point1.global_position
+	$Wave2/Goblin2.global_position = $SpawnPoints/Point2.global_position
 
 
 func _on_room_3_enter_body_entered(body):
@@ -75,3 +85,8 @@ func _on_room_3_enter_body_entered(body):
 func _on_room_3_enter_body_exited(body):
 	if body.has_method("player"):
 		Global.transition_scene = false
+		
+func track_stats():
+	Global.goblins_killed = goblins_killed
+	Global.player_health = $Player.health
+	Global.waves = goblin_wave

@@ -12,8 +12,7 @@ var goblin_alive = true
 var goblin_attacking = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
+	goblin_alive = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
@@ -76,3 +75,9 @@ func _on_goblin_ouch_timeout():
 func _on_goblin_dies_timeout():
 	goblin_killed.emit()
 	self.queue_free()
+
+
+func _on_goblin_killed():
+	goblin_attacking = false
+	player_inrange = false
+	

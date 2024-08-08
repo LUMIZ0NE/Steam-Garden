@@ -11,3 +11,11 @@ offset_top = 124.0
 offset_right = 243.0
 offset_bottom = 147.0
 text = "you died to goblin"
+
+[node name="GoblinKillCount" type="Label" parent="."]
+offset_left = 207.0
+offset_top = 151.0
+offset_right = 346.0
+offset_bottom = 174.0
+text = "kilt goblin:
+"
