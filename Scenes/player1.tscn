@@ -94,7 +94,7 @@ position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_13tvh")
 
 [node name="AtkCooldown" type="Timer" parent="."]
-wait_time = 1.509
+wait_time = 1.7
 
 [node name="PlayerCooldown" type="Timer" parent="."]
 

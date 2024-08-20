@@ -19,3 +19,20 @@ offset_right = 346.0
 offset_bottom = 174.0
 text = "kilt goblin:
 "
+
+[node name="HealthLeft" type="Label" parent="."]
+offset_left = 207.0
+offset_top = 179.0
+offset_right = 346.0
+offset_bottom = 202.0
+text = "heLKRTH
+"
+
+[node name="Grade" type="Label" parent="."]
+offset_left = 474.0
+offset_top = 359.0
+offset_right = 613.0
+offset_bottom = 382.0
+text = "final grade
+
+"

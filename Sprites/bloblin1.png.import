@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://mywdlldosfrs"
-path="res://.godot/imported/slash3.png-68e624f236b0664eb455df4cccb53b01.ctex"
+uid="uid://cnm5ul2dny2oh"
+path="res://.godot/imported/bloblin1.png-2b7baec827a594b4ad1bc728902f0bee.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/slash3.png"
-dest_files=["res://.godot/imported/slash3.png-68e624f236b0664eb455df4cccb53b01.ctex"]
+source_file="res://Sprites/bloblin1.png"
+dest_files=["res://.godot/imported/bloblin1.png-2b7baec827a594b4ad1bc728902f0bee.ctex"]
 
 [params]
 

@@ -131,10 +131,10 @@ position = Vector2(840, 210)
 [node name="Wave2" type="Node2D" parent="."]
 
 [node name="Goblin" parent="Wave2" instance=ExtResource("4_fa1de")]
-position = Vector2(1398, 355)
+position = Vector2(1404, 359)
 
 [node name="Goblin2" parent="Wave2" instance=ExtResource("4_fa1de")]
-position = Vector2(1437, 397)
+position = Vector2(1441, 392)
 
 [connection signal="gate_close" from="." to="GoblinGate" method="_on_room_2_gate_close"]
 [connection signal="gate_open" from="." to="GoblinGate" method="_on_room_2_gate_open"]

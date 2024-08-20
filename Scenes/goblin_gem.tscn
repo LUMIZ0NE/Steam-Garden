@@ -39,7 +39,7 @@ position = Vector2(-3.8147e-06, 0)
 scale = Vector2(2.3, 2.16667)
 sprite_frames = SubResource("SpriteFrames_0872h")
 autoplay = "default"
-frame_progress = 0.51571
+frame_progress = 0.479335
 
 [node name="GemCollect" type="Area2D" parent="."]
 

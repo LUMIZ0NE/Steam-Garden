@@ -13,6 +13,8 @@ var goblin_attacking = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	goblin_alive = true
+	goblin_attacking = false
+	can_hurt = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
