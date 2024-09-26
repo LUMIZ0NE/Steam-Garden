@@ -29,10 +29,28 @@ text = "heLKRTH
 "
 
 [node name="Grade" type="Label" parent="."]
-offset_left = 474.0
-offset_top = 359.0
-offset_right = 613.0
-offset_bottom = 382.0
+offset_left = 545.0
+offset_top = 124.0
+offset_right = 684.0
+offset_bottom = 173.0
 text = "final grade
 
 "
+
+[node name="NameInput" type="TextEdit" parent="."]
+visible = false
+offset_left = 336.0
+offset_top = 287.0
+offset_right = 495.0
+offset_bottom = 323.0
+placeholder_text = "enter name here"
+
+[node name="EnterScore" type="Button" parent="."]
+visible = false
+offset_left = 510.0
+offset_top = 280.0
+offset_right = 578.0
+offset_bottom = 329.0
+text = "entert"
+
+[connection signal="pressed" from="EnterScore" to="." method="_on_enter_score_pressed"]
