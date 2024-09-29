@@ -47,5 +47,7 @@ func _on_enter_score_pressed():
 	if $NameInput.text != "":
 		username = $NameInput.text
 	print(username)
+	$NameInput.hide()
+	$EnterScore.hide()
 	write_score_to_file()
 	

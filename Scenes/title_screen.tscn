@@ -6,24 +6,40 @@
 script = ExtResource("1_0g73b")
 
 [node name="StartButton" type="Button" parent="."]
-offset_left = 533.0
+offset_left = 525.0
 offset_top = 386.0
-offset_right = 649.0
+offset_right = 641.0
 offset_bottom = 448.0
 text = "Start Run"
 
 [node name="Title" type="Label" parent="."]
-offset_left = 355.0
+offset_left = 352.0
 offset_top = 215.0
-offset_right = 824.0
+offset_right = 821.0
 offset_bottom = 247.0
 text = "STEAM GARDEN but not really its kind of something else now"
 
-[node name="Button" type="Button" parent="."]
-offset_left = 539.0
+[node name="ScoreView" type="Button" parent="."]
+offset_left = 530.0
 offset_top = 462.0
-offset_right = 643.0
+offset_right = 634.0
 offset_bottom = 509.0
 text = "View Scores"
 
+[node name="ScoreDisplay" type="RichTextLabel" parent="."]
+offset_left = 840.0
+offset_top = 321.0
+offset_right = 1095.0
+offset_bottom = 618.0
+text = "w"
+
+[node name="ScoreTitle" type="Label" parent="."]
+visible = false
+offset_left = 842.0
+offset_top = 297.0
+offset_right = 1047.0
+offset_bottom = 320.0
+text = "Device Score History:"
+
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="ScoreView" to="." method="_on_score_view_pressed"]
