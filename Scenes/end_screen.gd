@@ -37,9 +37,12 @@ func _process(delta):
 	pass
 
 func write_score_to_file():
-	var file = FileAccess.open("user://save_data.dat", FileAccess.READ)
-	if file.file_exists("user://save_data.dat"):
-		file = FileAccess.open("user://save_data.dat", FileAccess.READ_WRITE)
+	if FileAccess.file_exists("user://save_data.dat") == true:
+		var file = FileAccess.open("user://save_data.dat", FileAccess.READ_WRITE)
+		file.seek_end()
+		file.store_string(username + " " + str(sum_score) + " " + $Grade.text + "\n")
+	else:
+		var file = FileAccess.open("user://save_data.dat", FileAccess.WRITE)
 		file.seek_end()
 		file.store_string(username + " " + str(sum_score) + " " + $Grade.text + "\n")
 
