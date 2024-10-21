@@ -52,5 +52,6 @@ func _on_enter_score_pressed():
 	print(username)
 	$NameInput.hide()
 	$EnterScore.hide()
+	$ScoreSaver.show()
 	write_score_to_file()
 	

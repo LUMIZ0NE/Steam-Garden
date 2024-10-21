@@ -6,32 +6,32 @@
 script = ExtResource("1_6el2s")
 
 [node name="ResultBigText" type="Label" parent="."]
-offset_left = 203.0
+offset_left = 270.0
 offset_top = 124.0
-offset_right = 243.0
+offset_right = 409.0
 offset_bottom = 147.0
 text = "you died to goblin"
 
 [node name="GoblinKillCount" type="Label" parent="."]
-offset_left = 207.0
+offset_left = 274.0
 offset_top = 151.0
-offset_right = 346.0
+offset_right = 413.0
 offset_bottom = 174.0
 text = "kilt goblin:
 "
 
 [node name="HealthLeft" type="Label" parent="."]
-offset_left = 207.0
+offset_left = 274.0
 offset_top = 179.0
-offset_right = 346.0
+offset_right = 413.0
 offset_bottom = 202.0
 text = "heLKRTH
 "
 
 [node name="Grade" type="Label" parent="."]
-offset_left = 545.0
+offset_left = 612.0
 offset_top = 124.0
-offset_right = 684.0
+offset_right = 751.0
 offset_bottom = 173.0
 text = "final grade
 
@@ -39,18 +39,26 @@ text = "final grade
 
 [node name="NameInput" type="TextEdit" parent="."]
 visible = false
-offset_left = 336.0
+offset_left = 413.0
 offset_top = 287.0
-offset_right = 495.0
+offset_right = 572.0
 offset_bottom = 323.0
 placeholder_text = "enter name here"
 
 [node name="EnterScore" type="Button" parent="."]
 visible = false
-offset_left = 510.0
-offset_top = 280.0
-offset_right = 578.0
-offset_bottom = 329.0
+offset_left = 459.0
+offset_top = 330.0
+offset_right = 527.0
+offset_bottom = 379.0
 text = "entert"
+
+[node name="ScoreSaver" type="Label" parent="."]
+visible = false
+offset_left = 306.0
+offset_top = 305.0
+offset_right = 675.0
+offset_bottom = 328.0
+text = "Score saved! Can be revisited on the title screen"
 
 [connection signal="pressed" from="EnterScore" to="." method="_on_enter_score_pressed"]
