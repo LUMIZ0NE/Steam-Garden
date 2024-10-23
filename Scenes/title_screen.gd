@@ -10,12 +10,13 @@ func _ready():
 func _process(delta):
 	pass
 
-
+# load the first room scene to begin gameplay
 func _on_start_button_pressed():
 	get_tree().change_scene_to_file("res://Scenes/world1.tscn")
 
 
 func _on_score_view_pressed():
+	#Reads the text in the save_data.dat file for display
 	var file = FileAccess.open("user://save_data.dat", FileAccess.READ)
 	var score_history = file.get_as_text()
 	if $ScoreDisplay.visible == false:

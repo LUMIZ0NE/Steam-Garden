@@ -1,4 +1,5 @@
 extends CharacterBody2D
+# set variables on player's first load
 @export var speed = 200.0
 @export var acceleration = 20
 @export var friction = 10
@@ -10,6 +11,7 @@ var enemy_atk_cooldown = true
 var health = 200
 var player_alive = true
 
+#here for goblin's attacks
 signal goblin_stab
 signal goblin_stop
 var attack_ip = false
@@ -22,12 +24,14 @@ func _physics_process(_delta):
 	enemy_attack()
 	attack()
 	
+	# Send player to end screen with win conditions not met once health reaches at or below 0
 	if health <= 0:
 		player_alive = false
 		health = 0
 		print("you should be dead")
 		get_tree().change_scene_to_file("res://Scenes/end_screen.tscn")
 
+# player directional movement and respective animations
 func player_movement(delta):
 	direction = Input.get_vector("move_left", "move_right", "move_up", "move_down").normalized()
 	if direction:
@@ -50,16 +54,18 @@ func player_movement(delta):
 		play_anim(1)
 	
 	move_and_slide()
-	
+
+# check if goblin(s) are in range to attack
 func _on_player_hitbox_body_entered(body):
 	if body.has_method("goblin"):
 		enemy_inrange = true
 
-
+# check if goblin(s) are out of range
 func _on_player_hitbox_body_exited(body):
 	if body.has_method("goblin"):
 		enemy_inrange = false
 
+# take damage when goblin attacks 
 func enemy_attack():
 	if enemy_inrange and enemy_atk_cooldown == true:
 		health = health - 10
@@ -73,6 +79,7 @@ func _on_atk_cooldown_timeout():
 	enemy_atk_cooldown = true
 	goblin_stop.emit()
 
+# determine if the player is moving and in what direction to set correct animations
 func play_anim(moving):
 	var dir = current_direction
 	var anim = $PlayerSprite
@@ -95,6 +102,7 @@ func play_anim(moving):
 		if attack_ip == false:
 			anim.play("idle")
 
+# determine when attack key is pressed and set cooldown and animation accordingly
 func attack():
 	var dir2 = current_direction
 	if Input.is_action_just_pressed("attack"):
@@ -116,7 +124,7 @@ func attack():
 			$PlayerSprite.play("orange")
 			$PlayerCooldown.start()
 
-
+# cooldown ends on player attack
 func _on_player_cooldown_timeout():
 	$PlayerCooldown.stop()
 	Global.player_current_atk = false

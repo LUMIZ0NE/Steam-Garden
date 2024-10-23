@@ -27,6 +27,7 @@ var goblins_killed = 0
 var player_health = 0 
 var waves = 0
 
+# Determines what scene to load next based on variable changes from the initial scene
 func finish_changescenes():
 	print(str(transition_scene))
 	transition_scene = false

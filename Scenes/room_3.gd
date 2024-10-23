@@ -10,6 +10,7 @@ func _ready():
 func _process(delta):
 	change_scene()
 
+#Establish a change back to room2 when entering doorway collisionshape
 func change_scene():
 	if Global.transition_scene == true:
 		if Global.current_scene == "Room3":
@@ -17,6 +18,7 @@ func change_scene():
 			Global.finish_changescenes()
 
 
+# Change global variables so that any rooms entered from room3 set the payer position to the correct door
 func _on_room_3_exit_body_entered(body):
 	if body.has_method("player"):
 		Global.current_scene = "Room3"

@@ -2,6 +2,7 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	# if the scene has been loaded for the first time, sets player position to the inital spawnpoint
 	Global.current_scene = "World"
 	if Global.first_load == true:
 		$Player.position.x = Global.player_start_posx
@@ -16,7 +17,7 @@ func _ready():
 func _process(delta):
 	change_scene()
 
-
+# leaving world1 to load room2
 func _on_room_2_enter_body_entered(body):
 	if body.has_method("player"):
 		
